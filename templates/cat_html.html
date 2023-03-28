@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Все категории игр</title>
+</head>
+<body>
+{% for i in range(data|length) %}
+{{ data[i].id }} | {{ data[i].title }}
+{% endfor %}
+
+</body>
+</html>
