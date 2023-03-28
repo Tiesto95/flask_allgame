@@ -11,8 +11,9 @@ class Cat(db.Model):
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(120), nullable=False)
     cat_id = db.Column(db.Integer, db.ForeignKey('cat.id'), nullable=False, index=True)
-    cat = db.relationship(Cat, foreign_keys=[cat_id, ])
+    cat = db.relationship('Cat', foreign_keys=[cat_id])
     code = db.Column(db.Text, nullable=False)
     descr = db.Column(db.Text)
     add_date = db.Column(db.Date, default=date.today(), nullable=False)

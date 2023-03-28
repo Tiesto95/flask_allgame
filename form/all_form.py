@@ -10,3 +10,4 @@ class CatForm(ModelForm):
 class GameForm(ModelForm):
     class Meta:
         model = Game
+        include = ['cat_id']

@@ -12,13 +12,14 @@ def home():
     from models.models_db import Cat, Game
     from form.all_form import CatForm, GameForm
     cat_dict = Cat.query.all()
-
-    return render_template('cat_html.html', data=cat_dict)
+    game_dict = Game.query.all()
+    data_t = [cat_dict, game_dict]
+    return render_template('cat_html.html', data=data_t)
 
 @app.route('/add_cat', methods=['POST'])
 def add_cat():
-    from models.models_db import Cat, Game
-    from form.all_form import CatForm, GameForm
+    from models.models_db import Cat
+    from form.all_form import CatForm
     if request.method == 'POST':
         form = CatForm(request.form)
         if form.validate():
@@ -27,6 +28,22 @@ def add_cat():
             db.session.commit()
         else:
             print('Валидация не прошла.')
+    return 'Запрос выполнен'
+
+@app.route('/add_game', methods=['POST'])
+def add_game():
+    from models.models_db import Game
+    from form.all_form import GameForm
+    if request.method == 'POST':
+        print(request.form)
+        form = GameForm(request.form)
+        if form.validate():
+            print(form.data)
+            data = Game(**form.data)
+            db.session.add(data)
+            db.session.commit()
+        else:
+            print('Валидация не прошла')
     return 'Запрос выполнен'
 
 if __name__ == '__main__':
