@@ -18,3 +18,12 @@ class Game(db.Model):
     descr = db.Column(db.Text)
     add_date = db.Column(db.Date, default=date.today(), nullable=False)
     is_visable = db.Column(db.Boolean, default=True, nullable=False)
+
+class News(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(150), nullable=False)
+    img = db.Column(db.String(255), nullable=False)
+    text = db.Column(db.Text)
+    descr = db.Column(db.Text)
+    add_date = db.Column(db.Date, default=date.today(), nullable=False)
+    is_visible = db.Column(db.Boolean, default=True, nullable=False)

@@ -13,7 +13,6 @@ def home():
     from form.all_form import CatForm, GameForm
     cat_dict = Cat.query.all()
     game_dict = Game.query.join(Cat).all()
-
     data_t = [cat_dict, game_dict]
     return render_template('cat_html.html', data=data_t)
 
@@ -46,6 +45,26 @@ def add_game():
         else:
             print('Валидация не прошла')
     return 'Запрос выполнен'
+
+
+@app.route('/add_news', methods=['POST'])
+def add_news():
+    from models.models_db import News
+    from form.all_form import NewsForm
+    if request.method == 'POST':
+        form = NewsForm(request.form)
+        if form.validate():
+            data = News(**form.data)
+            db.session.add(data)
+            db.session.commit()
+        else:
+            print('Валидация не прошла')
+    return "Новость добавлена"
+
+
+
+
+
 
 if __name__ == '__main__':
     from models.models_db import *
