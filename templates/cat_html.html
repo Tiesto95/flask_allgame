@@ -13,5 +13,10 @@
 {% endif %}{% endfor %}
 {% endfor %}
 
+<h2>Новости</h2>
+{% for i in range(data[2]|length) %}
+{{ data[2][i].id }} | {{ data[2][i].title }}
+{% endfor %}
+
 </body>
 </html>

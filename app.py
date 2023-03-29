@@ -9,11 +9,12 @@ db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET'])
 def home():
-    from models.models_db import Cat, Game
+    from models.models_db import Cat, Game, News
     from form.all_form import CatForm, GameForm
     cat_dict = Cat.query.all()
     game_dict = Game.query.join(Cat).all()
-    data_t = [cat_dict, game_dict]
+    news_dict = News.query.all()
+    data_t = [cat_dict, game_dict, news_dict]
     return render_template('cat_html.html', data=data_t)
 
 @app.route('/add_cat', methods=['POST'])
@@ -47,7 +48,7 @@ def add_game():
     return 'Запрос выполнен'
 
 
-@app.route('/add_news', methods=['POST'])
+@app.route('/add_news', methods=['POST', 'GET'])
 def add_news():
     from models.models_db import News
     from form.all_form import NewsForm
@@ -59,12 +60,9 @@ def add_news():
             db.session.commit()
         else:
             print('Валидация не прошла')
-    return "Новость добавлена"
-
-
-
-
-
+        return "Новость добавлена"
+    if request.method == 'GET':
+        return render_template('add_news.html')
 
 if __name__ == '__main__':
     from models.models_db import *
