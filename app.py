@@ -12,7 +12,8 @@ def home():
     from models.models_db import Cat, Game
     from form.all_form import CatForm, GameForm
     cat_dict = Cat.query.all()
-    game_dict = Game.query.all()
+    game_dict = Game.query.join(Cat).all()
+
     data_t = [cat_dict, game_dict]
     return render_template('cat_html.html', data=data_t)
 
