@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Все категории игр</title>
-</head>
-<body>
+{% extends 'header.html' %}
+
+{% block content%}
 {% for i in range(data[0]|length) %}
 {{ data[0][i].id }} | {{ data[0][i].title }}
 {% for k in range(data[1]|length) %}
@@ -17,6 +13,4 @@
 {% for i in range(data[2]|length) %}
 {{ data[2][i].id }} | {{ data[2][i].title }}
 {% endfor %}
-
-</body>
-</html>
+{% endblock %}

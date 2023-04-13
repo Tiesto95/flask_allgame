@@ -27,3 +27,10 @@ class News(db.Model):
     descr = db.Column(db.Text)
     add_date = db.Column(db.Date, default=date.today(), nullable=False)
     is_visible = db.Column(db.Boolean, default=True, nullable=False)
+
+class NewsComent(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    news_id = db.Column(db.Integer, db.ForeignKey('news.id'), nullable=False, index=True)
+
+    text = db.Column(db.Text, nullable=False)
+    add_date = db.Column(db.Date, default=date.today(), nullable=False)

@@ -1,55 +1,29 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Добавление новости</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-      label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-      }
-      input[type="text"],
-      textarea {
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      input[type="submit"] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-      }
-      input[type="submit"]:hover {
-        background-color: #3e8e41;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Add News</h1>
+{% extends 'header.html' %}
+
+{% block content%}
+<div class="container px-4">
+ <h1>Add News</h1>
     <form action="/add_news" method="POST">
-      <label for="title">Заголовок:</label>
-      <input type="text" id="title" name="title" required>
-      <br>
-      <label for="img">Ссылка на изображение:</label>
-      <input type="text" id="img" name="img" required>
-      <br>
-      <label for="text">Текст новости:</label>
-      <textarea id="text" name="text"></textarea>
-      <br>
-      <label for="descr">Описание новости:</label>
-      <textarea id="descr" name="descr"></textarea>
-      <br>
-      <input type="submit" value="Добавить новость">
+        <div class="mb-3">
+      <label for="title" class="form-label">Заголовок:</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+      <label for="img" class="form-label">Ссылка на изображение:</label>
+      <input type="text" class="form-control" id="img" name="img" required>
+        </div>
+        <div class="mb-3">
+      <label for="text" class="form-label">Текст новости:</label>
+      <textarea class="form-control"  rows="3" name="text"></textarea>
+        </div>
+        <div class="mb-3">
+      <label for="descr" class="form-label">Описание новости:</label>
+      <textarea class="form-control" rows="3" name="descr"></textarea>
+        </div>
+        <div class="mb-3">
+      <input type="submit" class="btn btn-success" value="Добавить новость">
+        </div>
+
     </form>
-  </body>
-</html>
+ </div>
+{% endblock %}
